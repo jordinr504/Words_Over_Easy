@@ -10,7 +10,7 @@ def setup():
     fill(0,0,0)
     text("Score:",20,40)
     text("Time:",640,40)
-    
+    #cori was here
     overEasy("book")
     
 def overEasy(word):
