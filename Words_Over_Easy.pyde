@@ -1,7 +1,7 @@
 def setup():
     global img
     size(800,800)
-    img = loadImage("Screen Shot 2019-07-29 at 11.00.25 AM.png")
+    img = loadImage("Screen Shot 2019-07-29 at 11.00.25 AM.png") #logo
     background(235,239,242)
     image(img,0,-100,800,800)
     
