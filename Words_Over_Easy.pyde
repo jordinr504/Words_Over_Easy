@@ -4,13 +4,10 @@ def setup():
     size(800,800)
     
 
-    fill(0,0,255)
     instructions()
     # overEasy("credit")
     
-#     if phase1 and keyPressed and key == 's':
-#         phase1 = phase2
-#         show overEasy()
+    
 def draw():
     pass
     
@@ -33,6 +30,7 @@ then press ENTER on your keyboard to go to
 the next word. As time progresses, the words 
 to guess will get harder.
 Good luck!!""",110,140)
+    
     bigF = createFont("ShadowsIntoLight-Regular.ttf",70)
     textFont(bigF)
     text("INSTRUCTIONS..",200,75)
@@ -40,8 +38,6 @@ Good luck!!""",110,140)
     # hey cori
     #cori was here
 
-    overEasy("morgan")
-#=======
     # dictionary()
 
 
@@ -113,18 +109,3 @@ def overEasy(word):
     for x in range(len(result)): #makes the letters appear in the boxes
         firstLetter = result[x]
         text(firstLetter,(x*120)+80,740)
-
-        
-
- # def mouseClicked():
- #    #for j in range(len(word)):
- #    #if mouseX > 40 and mouseX < 140 and mouseY > 680 and mouseY < 780:
- #        print(firstLetter)
- #        word = 
-
-# def mouseClicked():
-    
-#     # for j in range(len(word)):
-#     #     if mouseX > 40 and mouseX < 140 and mouseY > 680 and mouseY < 780:
-#     #         print(firstLetter)
-#     #         word = 
