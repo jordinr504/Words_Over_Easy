@@ -45,23 +45,26 @@ def keyPressed():
 
     import random
     dictionary()
-    randomWord = random.choice(setOfwords)
+    
     if key == 's' and startGame == True:
         gameActive = True
         startTimer = millis()
+        randomWord = random.choice(setOfwords)
         overEasy(randomWord)
         startGame = False
 
     if keyCode == 10: #RETURN key #makes it go to next word
+        randomWord = random.choice(setOfwords)
         together = "".join(guess) #makes list of letters become string
         if together in setOfwords: # to see if it was in a list
             scoreboard = scoreboard + 20
         guess = []
         overEasy(randomWord)
 
-    if keyCode == 8:
-        guess = []
-    print(keyCode)
+    if keyCode == 8 and len(guess) != 0: #deletes
+        guess.pop()
+        overEasy(randomWord)
+        guessLetters()
 
 
 def mousePressed():
@@ -85,7 +88,10 @@ def mousePressed():
         guess.append(result[4])
     elif mousePressed and mouseY > 680 and mouseX > 640 and mouseX < 730:
         guess.append(result[5])
+        
+    guessLetters()
 
+def guessLetters():
     for x in range(len(guess)): #makes the letters appear on the line
         firstLetter = guess[x]
         text(firstLetter,(x*120)+100,640)
