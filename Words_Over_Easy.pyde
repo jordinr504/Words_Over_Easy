@@ -1,14 +1,19 @@
+#make score go up when you press enter
+#make score go up if word is in the list
 
 def setup(): 
     global img
-<<<<<<< HEAD
     global guess
-    guess=[]
-=======
     global showTimer
->>>>>>> 0fe820d6fd7e6c97d837cd95ac2f9b3c7c30882b
+    global startGame
+    global scoreboard
+    
     size(800,800)
+    
+    guess=[]
     showTimer = False 
+    startGame = True
+    scoreboard = 0
 
     instructions()
     # overEasy("credit")
@@ -24,24 +29,40 @@ def draw():
         rect(740, 0,60,40)
         fill(0)
         text(displayTime ,740,40)
-    
+        stroke(0,0,0)
     
 def keyPressed():
     global setOfwords
     global randomWord
     global startTimer
     global showTimer
+    global guess
+    global startGame
+    global scoreboard
+    
     import random
     dictionary()
     randomWord = random.choice(setOfwords)
-    if key == 's':
+    if key == 's' and startGame == True:
         showTimer = True 
         startTimer = millis()
         overEasy(randomWord)
-    # if key == CODED:
-    #     if keyCode == ENTER:
-    #         overEasy(randomWord)
+        startGame = False
+    
+        
+    if keyCode == 10: #RETURN key #makes it go to next word
+        together = "".join(guess) #makes list of letters become string
+        if together in setOfwords: # to see if it was in a list
+            scoreboard = scoreboard + 20
+        guess = []
+        overEasy(randomWord)
+    
+
+            
     print(key)
+    print(keyCode)
+    print(RETURN)
+    
     
 def mousePressed():
     global result
@@ -51,16 +72,7 @@ def mousePressed():
     global guess
     
     dictionary()
-    # cori = []
-    # for x in range(len(result)): #makes the letters appear on the line
-    #     firstLetter = randomWord[x]
-    #     text(firstLetter,(x*120)+100,600)
         
-    # if guess[len  
-                
-    for x in range(len(guess)): #makes the letters appear in the boxes
-        firstLetter = guess[x]
-        text(firstLetter,(x*120)+100,600)  
                        
     if mousePressed and mouseY > 680 and mouseX > 40 and mouseX < 150:
         guess.append(result[0])
@@ -74,6 +86,12 @@ def mousePressed():
         guess.append(result[4])
     elif mousePressed and mouseY > 680 and mouseX > 640 and mouseX < 730:
         guess.append(result[5])
+        
+        
+    for x in range(len(guess)): #makes the letters appear on the line
+        firstLetter = guess[x]
+        text(firstLetter,(x*120)+100,600) 
+
 
     
     
@@ -136,6 +154,7 @@ def overEasy(word):
     global result
     global l
     global x
+    global scoreboard
 
 
     img = loadImage("overeasy.jpg") #logo
@@ -145,7 +164,7 @@ def overEasy(word):
     f = createFont("ShadowsIntoLight-Regular.ttf",40)
     textFont(f)
     fill(0,0,0)
-    text("Score:",20,40)
+    text("Score:"+str(scoreboard),20,40)
     text("Time:",640,40)
     
     fill(255,255,255)
