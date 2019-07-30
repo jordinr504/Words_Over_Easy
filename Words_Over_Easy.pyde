@@ -39,7 +39,11 @@ Good luck!!""",110,140)
     
     # hey cori
     #cori was here
+
+    overEasy("morgan")
+#=======
     # dictionary()
+
 
 # def dictionary():
 #     setOfwords = {
@@ -109,16 +113,18 @@ def overEasy(word):
     for x in range(len(result)): #makes the letters appear in the boxes
         firstLetter = result[x]
         text(firstLetter,(x*120)+80,740)
+
         
+
+ # def mouseClicked():
+ #    #for j in range(len(word)):
+ #    #if mouseX > 40 and mouseX < 140 and mouseY > 680 and mouseY < 780:
+ #        print(firstLetter)
+ #        word = 
+
 # def mouseClicked():
     
 #     # for j in range(len(word)):
 #     #     if mouseX > 40 and mouseX < 140 and mouseY > 680 and mouseY < 780:
 #     #         print(firstLetter)
 #     #         word = 
-
-
-import time
-def timer():
-   now = time.localtime(time.time())
-   return now[5]
