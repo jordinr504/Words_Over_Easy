@@ -1,6 +1,3 @@
-#make score go up when you press enter
-#make score go up if word is in the list
-
 def setup(): 
     global img
     global guess
@@ -21,14 +18,7 @@ def setup():
     startGame = True
     scoreboard = 0
     
-    
-
-    
-    
-
     instructions()
-    # overEasy("credit")
-    
     
 def draw():
     global showTimer 
@@ -59,7 +49,6 @@ def keyPressed():
         startTimer = millis()
         overEasy(randomWord)
         startGame = False
-    
         
     if keyCode == 10: #RETURN key #makes it go to next word
         together = "".join(guess) #makes list of letters become string
@@ -67,13 +56,11 @@ def keyPressed():
             scoreboard = scoreboard + 20
         guess = []
         overEasy(randomWord)
-    
-
-            
-    print(key)
+        
+    if keyCode == 8:
+        guess = []
     print(keyCode)
-    print(RETURN)
-    
+        
     
 def mousePressed():
     global result
@@ -83,8 +70,7 @@ def mousePressed():
     global guess
     
     dictionary()
-        
-                       
+                        
     if mousePressed and mouseY > 680 and mouseX > 40 and mouseX < 150:
         guess.append(result[0])
     elif mousePressed and mouseY > 680 and mouseX > 160 and mouseX < 270:
@@ -98,41 +84,29 @@ def mousePressed():
     elif mousePressed and mouseY > 680 and mouseX > 640 and mouseX < 730:
         guess.append(result[5])
         
-        
     for x in range(len(guess)): #makes the letters appear on the line
         firstLetter = guess[x]
         text(firstLetter,(x*120)+100,640) 
-
-
-    
-    
-
-    
+        
 def instructions():
     fill(255,255,255)
-    rect(100,100,600,600)
+    rect(100,150,600,600)
     f = createFont("ShadowsIntoLight-Regular.ttf",30)
     textFont(f)
     fill(0,0,0)
     text("""The name of this game is Words Over Easy. 
 The object of the game is to see how many of the 
-preset words you can make in 60 seconds. You
-have to click the letters on the screen and 
-then press ENTER on your keyboard to go to 
-the next word. As time progresses, the words 
+preset words you can make in 60 seconds. To start, 
+press 's'. You have to click the letters on the 
+screen and then press ENTER on your keyboard to 
+go to the next word. As time progresses, the words 
 to guess will get harder.
-Good luck!!""",110,140)
+Good luck!!""",110,200)
     
     bigF = createFont("ShadowsIntoLight-Regular.ttf",70)
     textFont(bigF)
-    text("INSTRUCTIONS..",200,75)
+    text("INSTRUCTIONS..",200,100)
     
-    # hey cori
-    #cori was here
-
-    # dictionary()
-
-
 def dictionary():
     global setOfwords
     setOfwords = [
@@ -153,14 +127,6 @@ def dictionary():
     "lucky",
     ]
     
-    # inputtedWord = #variable from cori("book").lower()
-    # dictionary = setOfwords
-    # if inputtedWord in setOfWords:
-    #     print(inputtedWord, "correct")
-    # else:
-    #     print(inputtedWord, "incorrect")
-           
-    
 def overEasy(word):
     global result
     global l
@@ -172,7 +138,6 @@ def overEasy(word):
     global space1
     global space2
 
-
     img = loadImage("overeasy.jpg") #logo
     background(235,239,242)
     image(img,0,-100,800,800)
@@ -183,7 +148,6 @@ def overEasy(word):
     text("Score:"+str(scoreboard),20,40)
     text("Time:",640,40)
     
-    
     fill(255,255,255)
     for j in range(6):
         rect((j*120)+40,680,100,100)
@@ -191,7 +155,6 @@ def overEasy(word):
     for r in range(6):
         line((r*120)+40,660,(r*120)+140,660)
 
-    
     f = createFont("ShadowsIntoLight-Regular.ttf",40)
     textFont(f)
     fill(0,0,0)
