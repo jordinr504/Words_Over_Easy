@@ -13,12 +13,33 @@ def draw():
     
 def keyPressed():
     global setOfwords
+    global randomWord
     import random
     dictionary()
     randomWord = random.choice(setOfwords)
     if key == 's':
         overEasy(randomWord)
+    # if key == CODED:
+    #     if keyCode == ENTER:
+    #         overEasy(randomWord)
     print(key)
+    
+def mousePressed():
+    global result
+    global randomWord
+    global l
+    global x
+    # cori = []
+    # for x in range(len(result)): #makes the letters appear on the line
+    #     firstLetter = randomWord[x]
+    #     text(firstLetter,(x*120)+100,600)
+        
+        
+    if mousePressed and mouseY > 680 and mouseX > 40 and mouseX < 150:
+        text(l[0],80,620)
+
+    
+    
 
     
 def instructions():
@@ -66,6 +87,8 @@ def dictionary():
     "lucky",
     ]
     
+    guess = []
+    
     # inputtedWord = #variable from cori("book").lower()
     # dictionary = setOfwords
     # if inputtedWord in setOfWords:
@@ -75,6 +98,9 @@ def dictionary():
            
     
 def overEasy(word):
+    global result
+    global l
+    global x
     img = loadImage("overeasy.jpg") #logo
     background(235,239,242)
     image(img,0,-100,800,800)
@@ -108,13 +134,14 @@ def overEasy(word):
     l = list(word) #shuffles letters
     random.shuffle(l)
     result = "".join(l)
-    print(word)
-    print(l)
-    print(result)
+    # print(word)
+    # print(l)
+    # print(result)
     
     for x in range(len(result)): #makes the letters appear in the boxes
         firstLetter = result[x]
         text(firstLetter,(x*120)+80,740)
-    for x in range(len(result)): #makes the letters appear in the boxes
-        firstLetter = word[x]
-        text(firstLetter,(x*120)+100,600)
+        
+    # for x in range(len(result)): #makes the letters appear on the line
+    #     firstLetter = word[x]
+    #     text(firstLetter,(x*120)+100,600)
