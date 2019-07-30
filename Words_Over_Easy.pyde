@@ -109,3 +109,6 @@ def overEasy(word):
     for x in range(len(result)): #makes the letters appear in the boxes
         firstLetter = result[x]
         text(firstLetter,(x*120)+80,740)
+    for x in range(len(result)): #makes the letters appear in the boxes
+        firstLetter = word[x]
+        text(firstLetter,(x*120)+100,600)
