@@ -1,23 +1,37 @@
 
 def setup(): 
     global img
+    global showTimer
     size(800,800)
-    
+    showTimer = False 
 
     instructions()
     # overEasy("credit")
     
     
 def draw():
-    pass
+    global showTimer 
+    currentTime = millis()
+    if showTimer:
+        displayTime = (currentTime - startTimer)/1000
+        fill(235,239,242)
+        noStroke()
+        rect(740, 0,60,40)
+        fill(0)
+        text(displayTime ,740,40)
+    
     
 def keyPressed():
     global setOfwords
     global randomWord
+    global startTimer
+    global showTimer
     import random
     dictionary()
     randomWord = random.choice(setOfwords)
     if key == 's':
+        showTimer = True 
+        startTimer = millis()
         overEasy(randomWord)
     # if key == CODED:
     #     if keyCode == ENTER:
