@@ -16,6 +16,8 @@ def setup():
     text("Score:",20,40)
     text("Time:",640,40)
     
+    overEasy("credit")
+    
 #     if phase1 and keyPressed and key == 's':
 #         phase1 = phase2
 #         show overEasy()
@@ -34,7 +36,6 @@ def setup():
     
     
     #cori was here
-    overEasy("credit")
     # dictionary()
 
 # def dictionary():
