@@ -1,38 +1,41 @@
-# phase1 = instructions()
-# phase2 = overEasy()
-# # phase3 = 
 
 def setup(): 
     global img
     size(800,800)
     
-    img = loadImage("overeasy.jpg") #logo
-    background(235,239,242)
-    image(img,0,-100,800,800)
-    
-    f = createFont("ShadowsIntoLight-Regular.ttf",40)
-    textFont(f)
-    fill(0,0,0)
-    text("Score:",20,40)
-    text("Time:",640,40)
-    
-    overEasy("credit")
+
+    fill(0,0,255)
+    instructions()
+    # overEasy("credit")
     
 #     if phase1 and keyPressed and key == 's':
 #         phase1 = phase2
 #         show overEasy()
+def draw():
+    pass
     
-# def instructions():
-#     fill(255,255,255)
-#     rect(200,200,400,400)
-#     f = createFont("ShadowsIntoLight-Regular.ttf",30)
-#     textFont(f)
-#     fill(0,0,0)
-#     text("""The name of this game is Words Over Easy. The object of the game is
-#          to see how many of the preset words you can make in 60 seconds. You
-#          have to click the letters on the screen and then press ENTER on your keyboard
-#          to go to the next word. As time progresses, the words to guess will get harder.
-#          Good luck.""",210,210)
+def keyPressed():
+    if key == 's':
+        overEasy("credit")
+    print(key)
+    
+def instructions():
+    fill(255,255,255)
+    rect(100,100,600,600)
+    f = createFont("ShadowsIntoLight-Regular.ttf",30)
+    textFont(f)
+    fill(0,0,0)
+    text("""The name of this game is Words Over Easy. 
+The object of the game is to see how many of the 
+preset words you can make in 60 seconds. You
+have to click the letters on the screen and 
+then press ENTER on your keyboard to go to 
+the next word. As time progresses, the words 
+to guess will get harder.
+Good luck!!""",110,140)
+    bigF = createFont("ShadowsIntoLight-Regular.ttf",70)
+    textFont(bigF)
+    text("INSTRUCTIONS..",200,75)
     
     
     #cori was here
@@ -66,6 +69,16 @@ def setup():
            
     
 def overEasy(word):
+    img = loadImage("overeasy.jpg") #logo
+    background(235,239,242)
+    image(img,0,-100,800,800)
+    
+    f = createFont("ShadowsIntoLight-Regular.ttf",40)
+    textFont(f)
+    fill(0,0,0)
+    text("Score:",20,40)
+    text("Time:",640,40)
+    
     fill(255,255,255)
     rect(40,680,100,100) #box 1
     rect(160,680,100,100) #box 2
