@@ -1,6 +1,8 @@
 
 def setup(): 
     global img
+    global guess
+    guess=[]
     size(800,800)
     
 
@@ -29,14 +31,32 @@ def mousePressed():
     global randomWord
     global l
     global x
+    global guess
+    
+    dictionary()
     # cori = []
     # for x in range(len(result)): #makes the letters appear on the line
     #     firstLetter = randomWord[x]
     #     text(firstLetter,(x*120)+100,600)
         
-        
+    # if guess[len  
+                
+    for x in range(len(guess)): #makes the letters appear in the boxes
+        firstLetter = guess[x]
+        text(firstLetter,(x*120)+100,600)  
+                       
     if mousePressed and mouseY > 680 and mouseX > 40 and mouseX < 150:
-        text(l[0],80,620)
+        guess.append(result[0])
+    elif mousePressed and mouseY > 680 and mouseX > 160 and mouseX < 270:
+        guess.append(result[1])
+    elif mousePressed and mouseY > 680 and mouseX > 280 and mouseX < 390:
+        guess.append(result[2])
+    elif mousePressed and mouseY > 680 and mouseX > 400 and mouseX < 510:
+        guess.append(result[3])
+    elif mousePressed and mouseY > 680 and mouseX > 520 and mouseX < 630:
+        guess.append(result[4])
+    elif mousePressed and mouseY > 680 and mouseX > 640 and mouseX < 730:
+        guess.append(result[5])
 
     
     
@@ -87,8 +107,6 @@ def dictionary():
     "lucky",
     ]
     
-    guess = []
-    
     # inputtedWord = #variable from cori("book").lower()
     # dictionary = setOfwords
     # if inputtedWord in setOfWords:
@@ -101,6 +119,8 @@ def overEasy(word):
     global result
     global l
     global x
+
+
     img = loadImage("overeasy.jpg") #logo
     background(235,239,242)
     image(img,0,-100,800,800)
