@@ -12,9 +12,14 @@ def draw():
     pass
     
 def keyPressed():
+    global setOfwords
+    import random
+    dictionary()
+    randomWord = random.choice(setOfwords)
     if key == 's':
-        overEasy("credit")
+        overEasy(randomWord)
     print(key)
+
     
 def instructions():
     fill(255,255,255)
@@ -41,31 +46,32 @@ Good luck!!""",110,140)
     # dictionary()
 
 
-# def dictionary():
-#     setOfwords = {
-#     "book", correct,
-#     "cat", correct,
-#     "crown", correct,
-#     "ocean", correct,
-#     "arrive", correct,
-#     "credit", correct,
-#     "junior", correct,
-#     "bear", correct,
-#     "dark", correct,
-#     "hair", correct,
-#     "apple", correct,
-#     "build", correct,
-#     "giant", correct,
-#     "japan", correct,
-#     "lucky", correct,
-#     }
+def dictionary():
+    global setOfwords
+    setOfwords = [
+    "book",
+    "cat",
+    "crown",
+    "ocean",
+    "arrive",
+    "credit",
+    "junior",
+    "bear",
+    "dark",
+    "hair",
+    "apple",
+    "build",
+    "giant",
+    "japan",
+    "lucky",
+    ]
     
-#     inputtedWord = #variable from cori("book").lower()
-#     dictionary = setOfwords
-#     if inputtedWord in setOfWords:
-#         print(inputtedWord, "correct")
-#     else:
-#         print(inputtedWord, "incorrect")
+    # inputtedWord = #variable from cori("book").lower()
+    # dictionary = setOfwords
+    # if inputtedWord in setOfWords:
+    #     print(inputtedWord, "correct")
+    # else:
+    #     print(inputtedWord, "incorrect")
            
     
 def overEasy(word):
