@@ -136,21 +136,21 @@ Good luck!!""",110,140)
 def dictionary():
     global setOfwords
     setOfwords = [
-    "book",
-    "cat",
-    "crown",
-    "ocean",
+    "dazzle",
+    "jacket",
+    "crowns",
+    "oceans",
     "arrive",
     "credit",
     "junior",
-    "bear",
-    "dark",
-    "hair",
-    "apple",
-    "build",
-    "giant",
-    "japan",
-    "lucky",
+    "artist",
+    "coffee",
+    "engine",
+    "apples",
+    "family",
+    "memory",
+    "summer",
+    "target",
     ]
     
     # inputtedWord = #variable from cori("book").lower()
