@@ -11,7 +11,7 @@ def setup():
     text("Score:",20,40)
     text("Time:",640,40)
     #cori was here
-    overEasy("book")
+    overEasy("morgan")
 
 def overEasy(word):
     fill(255,255,255)
@@ -44,13 +44,14 @@ def overEasy(word):
     for x in range(len(result)): #makes the letters appear in the boxes
         firstLetter = result[x]
         text(firstLetter,(x*120)+80,740)
+    if mousePressed and mouseY>+50:
         
-# def mouseClicked():
-    
-#     # for j in range(len(word)):
-#     #     if mouseX > 40 and mouseX < 140 and mouseY > 680 and mouseY < 780:
-#     #         print(firstLetter)
-#     #         word = 
+        
+ # def mouseClicked():
+ #    #for j in range(len(word)):
+ #    #if mouseX > 40 and mouseX < 140 and mouseY > 680 and mouseY < 780:
+ #        print(firstLetter)
+ #        word = 
 import time
 def timer():
    now = time.localtime(time.time())
