@@ -173,6 +173,7 @@ def dictionary():
         "memory",
         "summer",
         "target",]
+    jordinWords[ 
 
 
 def overEasy(word):
