@@ -6,7 +6,42 @@ def setup():
     global gameActive
     global startGame
     global scoreboard
+    global letters6
+    global letters7
     global setOfwords
+    
+    setOfwords=()
+    letters6= [
+    "dazzle",
+    "jacket",
+        "crowns",
+        "oceans",
+        "arrive",
+        "credit",
+        "junior",
+        "artist",
+        "coffee",
+        "engine",
+        "apples",
+        "family",
+        "memory",
+        "summer",
+        "target",]
+    letters7=[
+            "compete",
+            "driving",
+            "reading",
+            "teacher",
+            "working",
+            "virtual",
+            "sixteen",
+            "quality",
+            "publish",
+            "pacific",
+            "natural",
+            "machine",
+            "achieve"]
+            
 
     size(1000,800)
 
@@ -56,6 +91,8 @@ def keyPressed():
     global startGame
     global scoreboard
     global gameclock
+    global letters6
+    global letters7
 
     import random
     #print(setOfwords,"before")
@@ -65,16 +102,17 @@ def keyPressed():
     if key == 's' and startGame == True: #starts game
         gameActive = True
         startTimer = millis()
-        dictionary()
+        setOfwords = letters6
         randomWord = random.choice(setOfwords)
-        randomWord = "dazzle"
+        #randomWord = "dazzle"
         overEasy(randomWord)
         startGame = False
+        
 
     if key == 'g' and gameclock >= 60:
         gameActive = True
         startTimer = millis()
-        dictionary()
+        setOfwords= letters7
         randomWord = random.choice(setOfwords)
         scoreboard = 0
         overEasy(randomWord)
@@ -145,27 +183,9 @@ Good luck!!""",210,200)
     textFont(bigF)
     text("INSTRUCTIONS..",270,100)
 
-def dictionary():
-    global setOfwords
 
-    # if "setOfwords" in globals():
-
-    setOfwords = [
-    "dazzle",
-    "jacket",
-        "crowns",
-        "oceans",
-        "arrive",
-        "credit",
-        "junior",
-        "artist",
-        "coffee",
-        "engine",
-        "apples",
-        "family",
-        "memory",
-        "summer",
-        "target",]
+    
+        
 
 
 
