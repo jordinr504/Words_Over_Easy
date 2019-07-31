@@ -9,6 +9,7 @@ def setup():
     global letters6
     global letters7
     global setOfwords
+    global letters8
     
     setOfwords=()
     letters6= [
@@ -41,6 +42,21 @@ def setup():
             "natural",
             "machine",
             "achieve"]
+    letters8=[
+              "absolute",
+              "birthday",
+              "children",
+              "ultimate",
+              "engineer",
+              "festival",
+              "graduate",
+              "hospital",
+              "keyboard",
+              "learning",
+              "workshop",
+              "wireless",
+              "triangle"]
+              
             
 
     size(1000,800)
@@ -78,6 +94,16 @@ def draw():
             f = createFont("ShadowsIntoLight-Regular.ttf",30)
             textFont(f)
             text("press g",450,450)
+            
+        # if scoreboard >= 200:
+        #     gameActive = False
+        #     bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
+        #     textFont(bigFF)
+        #     background(255,255,255)
+        #     text("NEXT LEVEl..",130,400)
+        #     f = createFont("ShadowsIntoLight-Regular.ttf",30)
+        #     textFont(f)
+        #     text("press h",450,450)
 
 
         stroke(0,0,0)
@@ -93,6 +119,7 @@ def keyPressed():
     global gameclock
     global letters6
     global letters7
+    global letters8
 
     import random
     #print(setOfwords,"before")
@@ -117,6 +144,15 @@ def keyPressed():
         scoreboard = 0
         overEasy(randomWord)
         startGame = True
+    # if key == 'h' and gameclock >= 60:
+    #     gameActive = True
+    #     startTimer = millis()
+    #     setOfwords= letters8
+    #     randomWord = random.choice(setOfwords)
+    #     scoreboard = 0
+    #     overEasy(randomWord)
+    #     startGame = True
+        
 
 
     if keyCode == 10: #RETURN key #makes it go to next word
