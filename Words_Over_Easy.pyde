@@ -9,8 +9,12 @@ def setup():
     global letters6
     global letters7
     global setOfwords
+<<<<<<< HEAD
     global letters8
     
+=======
+
+>>>>>>> efac757a36d4717faef6b77738ebb4d00a9e00a7
     setOfwords=()
     letters6= [
     "dazzle",
@@ -42,6 +46,7 @@ def setup():
             "natural",
             "machine",
             "achieve"]
+<<<<<<< HEAD
     letters8=[
               "absolute",
               "birthday",
@@ -58,6 +63,9 @@ def setup():
               "triangle"]
               
             
+=======
+
+>>>>>>> efac757a36d4717faef6b77738ebb4d00a9e00a7
 
     size(1000,800)
 
@@ -76,14 +84,13 @@ def draw():
     currentTime = millis()
     if gameActive:
         gameclock = (currentTime - startTimer)/1000
-        fill(240,244,247)
+        fill(244,246,251)
         noStroke()
         rect(950, 0,60,40)
         f = createFont("ShadowsIntoLight-Regular.ttf",40)
         textFont(f)
         fill(0,0,0)
         text(gameclock ,950,40)
-
 
         if gameclock == 60:
             gameActive = False
@@ -104,7 +111,6 @@ def draw():
         #     f = createFont("ShadowsIntoLight-Regular.ttf",30)
         #     textFont(f)
         #     text("press h",450,450)
-
 
         stroke(0,0,0)
 
@@ -131,10 +137,10 @@ def keyPressed():
         startTimer = millis()
         setOfwords = letters6
         randomWord = random.choice(setOfwords)
-        #randomWord = "dazzle"
+        # randomWord = "dazzle"
         overEasy(randomWord)
         startGame = False
-        
+
 
     if key == 'g' and gameclock >= 60:
         gameActive = True
@@ -160,7 +166,7 @@ def keyPressed():
         together = "".join(guess) #makes list of letters become string
         if together in setOfwords: # to see if it was in a list
             scoreboard = scoreboard + 20
-            
+
         setOfwords.remove(randomWord)
         guess = []
         randomWord = random.choice(setOfwords)
@@ -183,11 +189,11 @@ def mousePressed():
 
     if gameActive == False:
         return
-    
+
     for e in range(len(randomWord)):
         if mousePressed and mouseY > 680 and mouseX > (e*120)+40 and mouseX < (e*120)+150:
             guess.append(result[e])
-            
+
     guessLetters()
 
 def guessLetters():
@@ -220,8 +226,8 @@ Good luck!!""",210,200)
     text("INSTRUCTIONS..",270,100)
 
 
-    
-        
+
+
 
 
 
@@ -233,7 +239,7 @@ def overEasy(word):
 
 
     numLetters = len(word)
-    
+
     img = loadImage("overeasy.jpg") #logo
     background(244,246,251)
     image(img,0,-100,1000,800)
