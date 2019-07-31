@@ -53,29 +53,38 @@ def keyPressed():
     global scoreboard
 
     import random
-    dictionary()
+    #print(setOfwords,"before")
+
+
     
     if key == 's' and startGame == True: #starts gamer
         gameActive = True
         startTimer = millis()
+        dictionary()
         randomWord = random.choice(setOfwords)
         overEasy(randomWord)
         startGame = False
         scoreboard = 0
         
+        
+        
     if key == 'g': 
         gameActive = True
         startTimer = millis()
+        dictionary()
         randomWord = random.choice(setOfwords)
         overEasy(randomWord)
         startGame = False 
         scoreboard = 0
+      
 
     if keyCode == 10: #RETURN key #makes it go to next word
+   
         randomWord = random.choice(setOfwords)
         together = "".join(guess) #makes list of letters become string
         if together in setOfwords: # to see if it was in a list
             scoreboard = scoreboard + 20
+        setOfwords.remove(randomWord)
         guess = []
         overEasy(randomWord)
 
@@ -92,7 +101,7 @@ def mousePressed():
     global x
     global guess
 
-    dictionary()
+    #dictionary()
 
     if mousePressed and mouseY > 680 and mouseX > 40 and mouseX < 150:
         guess.append(result[0])
@@ -135,23 +144,26 @@ Good luck!!""",110,200)
 
 def dictionary():
     global setOfwords
+    
+    # if "setOfwords" in globals():
+        
     setOfwords = [
     "dazzle",
     "jacket",
-    "crowns",
-    "oceans",
-    "arrive",
-    "credit",
-    "junior",
-    "artist",
-    "coffee",
-    "engine",
-    "apples",
-    "family",
-    "memory",
-    "summer",
-    "target",
-    ]
+        "crowns",
+        "oceans",
+        "arrive",
+        "credit",
+        "junior",
+        "artist",
+        "coffee",
+        "engine",
+        "apples",
+        "family",
+        "memory",
+        "summer",
+        "target",]
+
 
 def overEasy(word):
     global result
