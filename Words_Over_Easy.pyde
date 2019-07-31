@@ -14,19 +14,19 @@ def setup():
     letters6= [
     "dazzle",
     "jacket",
-        "crowns",
-        "oceans",
-        "arrive",
-        "credit",
-        "junior",
-        "artist",
-        "coffee",
-        "engine",
-        "apples",
-        "family",
-        "memory",
-        "summer",
-        "target",]
+    "crowns",
+    "oceans",
+    "arrive",
+    "credit",
+    "junior",
+    "artist",
+    "coffee",
+    "engine",
+    "apples",
+    "family",
+    "memory",
+    "summer",
+    "target",]
     letters7=[
             "compete",
             "driving",
@@ -68,15 +68,26 @@ def draw():
         fill(0,0,0)
         text(gameclock ,950,40)
 
-        if gameclock == 60:
+        if gameclock == 60 and scoreboard >= 120:
+            gameActive = False
+            playerlevel = 7
+            bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
+            textFont(bigFF)
+            background(255,255,255)
+            text("NEXT LEVEl..",150,400)
+            f = createFont("ShadowsIntoLight-Regular.ttf",30)
+            textFont(f)
+            text("press g",400,450)
+            
+        if gameclock == 60 and scoreboard < 120:
             gameActive = False
             bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
             textFont(bigFF)
             background(255,255,255)
-            text("NEXT LEVEl..",130,400)
+            text("GAME OVER..",150,400)
             f = createFont("ShadowsIntoLight-Regular.ttf",30)
             textFont(f)
-            text("press g",450,450)
+            text("press r to restart",400,450)
 
         stroke(0,0,0)
 
@@ -93,9 +104,6 @@ def keyPressed():
     global letters7
 
     import random
-    #print(setOfwords,"before")
-
-
 
     if key == 's' and startGame == True: #starts game
         gameActive = True
@@ -112,7 +120,6 @@ def keyPressed():
         startTimer = millis()
         setOfwords= letters7
         randomWord = random.choice(setOfwords)
-        scoreboard = 0
         overEasy(randomWord)
         startGame = True
 
@@ -180,11 +187,6 @@ Good luck!!""",210,200)
     bigF = createFont("ShadowsIntoLight-Regular.ttf",70)
     textFont(bigF)
     text("INSTRUCTIONS..",270,100)
-
-
-
-
-
 
 
 def overEasy(word):
