@@ -1,15 +1,15 @@
+#notes for kevin:
+    # when you press g to go to next level, the score does not reset and the time doesnt start again
+    # when i draw my box in the corner, the numbers for the time get smaller
+    # i could still click on the bottom of the screen and letters appear
+    
+
 def setup():
     global img
     global guess
     global gameActive
     global startGame
     global scoreboard
-    global boxX
-    global Rect
-    global boxes
-    global spaces
-    global space1
-    global space2
 
     size(800,800)
 
@@ -30,8 +30,17 @@ def draw():
         rect(740, 0,60,40)
         fill(0)
         text(gameclock ,740,40)
+        
         if gameclock == 60:
             gameActive = False
+            bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
+            textFont(bigFF)
+            background(255,255,255)
+            text("NEXT LEVEl..",90,400)
+            f = createFont("ShadowsIntoLight-Regular.ttf",30)
+            textFont(f)
+            text("press g",350,450)
+              
         stroke(0,0,0)
 
 def keyPressed():
@@ -46,12 +55,21 @@ def keyPressed():
     import random
     dictionary()
     
-    if key == 's' and startGame == True:
+    if key == 's' and startGame == True: #starts gamer
         gameActive = True
         startTimer = millis()
         randomWord = random.choice(setOfwords)
         overEasy(randomWord)
         startGame = False
+        scoreboard = 0
+        
+    if key == 'g': 
+        gameActive = True
+        startTimer = millis()
+        randomWord = random.choice(setOfwords)
+        overEasy(randomWord)
+        startGame = False 
+        scoreboard = 0
 
     if keyCode == 10: #RETURN key #makes it go to next word
         randomWord = random.choice(setOfwords)
@@ -140,11 +158,6 @@ def overEasy(word):
     global l
     global x
     global scoreboard
-    global boxX
-    global Rect
-    global spaces
-    global space1
-    global space2
 
     img = loadImage("overeasy.jpg") #logo
     background(235,239,242)
@@ -175,3 +188,14 @@ def overEasy(word):
     for x in range(len(result)): #makes the letters appear in the boxes
         firstLetter = result[x]
         text(firstLetter,(x*120)+80,740)
+        
+#     fill(255,255,255)    
+#     rect(530,70,250,180)
+#     lilf = createFont("ShadowsIntoLight-Regular.ttf",20)
+#     textFont(lilf)
+#     fill(0,0,0)
+#     text("""          Hints:
+# - ENTER to go to next word
+# - press DELETE if you clicked 
+# the wrong letter""",540,90)
+    
