@@ -25,14 +25,13 @@ def draw():
     currentTime = millis()
     if gameActive:
         gameclock = (currentTime - startTimer)/1000
-        fill(240,244,247)
+        fill(244,246,251)
         noStroke()
         rect(950, 0,60,40)
         f = createFont("ShadowsIntoLight-Regular.ttf",40)
         textFont(f)
         fill(0,0,0)
         text(gameclock ,950,40)
-
 
         if gameclock == 60:
             gameActive = False
@@ -43,7 +42,6 @@ def draw():
             f = createFont("ShadowsIntoLight-Regular.ttf",30)
             textFont(f)
             text("press g",450,450)
-
 
         stroke(0,0,0)
 
@@ -67,7 +65,7 @@ def keyPressed():
         startTimer = millis()
         dictionary()
         randomWord = random.choice(setOfwords)
-        randomWord = "dazzle"
+        # randomWord = "dazzle"
         overEasy(randomWord)
         startGame = False
 
