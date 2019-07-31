@@ -1,8 +1,4 @@
-#notes for kevin:
-    # when you press g to go to next level, the score does not reset and the time doesnt start again
-    # when i draw my box in the corner, the numbers for the time get smaller
-    # i could still click on the bottom of the screen and letters appear
-    
+import random
 
 def setup():
     global img
@@ -10,6 +6,7 @@ def setup():
     global gameActive
     global startGame
     global scoreboard
+    global setOfwords
 
     size(800,800)
 
@@ -18,18 +15,24 @@ def setup():
     startGame = True
     scoreboard = 0
 
+
     instructions()
 
 def draw():
     global gameActive
+    global gameclock
+    
     currentTime = millis()
     if gameActive:
         gameclock = (currentTime - startTimer)/1000
-        fill(235,239,242)
+        fill(240,244,247)
         noStroke()
         rect(740, 0,60,40)
-        fill(0)
+        f = createFont("ShadowsIntoLight-Regular.ttf",40)
+        textFont(f)
+        fill(0,0,0)
         text(gameclock ,740,40)
+
         
         if gameclock == 60:
             gameActive = False
@@ -40,6 +43,7 @@ def draw():
             f = createFont("ShadowsIntoLight-Regular.ttf",30)
             textFont(f)
             text("press g",350,450)
+       
               
         stroke(0,0,0)
 
@@ -51,25 +55,26 @@ def keyPressed():
     global guess
     global startGame
     global scoreboard
+    global gameclock
 
     import random
     dictionary()
     
-    if key == 's' and startGame == True: #starts gamer
+    if key == 's' and startGame == True: #starts game
         gameActive = True
         startTimer = millis()
         randomWord = random.choice(setOfwords)
         overEasy(randomWord)
         startGame = False
-        scoreboard = 0
         
-    if key == 'g': 
+    if key == 'g' and gameclock >= 60: 
         gameActive = True
         startTimer = millis()
         randomWord = random.choice(setOfwords)
-        overEasy(randomWord)
-        startGame = False 
         scoreboard = 0
+        overEasy(randomWord)
+        startGame = True 
+
 
     if keyCode == 10: #RETURN key #makes it go to next word
         randomWord = random.choice(setOfwords)
@@ -94,6 +99,9 @@ def mousePressed():
 
     dictionary()
 
+    if gameActive == False:
+        return
+        
     if mousePressed and mouseY > 680 and mouseX > 40 and mouseX < 150:
         guess.append(result[0])
     elif mousePressed and mouseY > 680 and mouseX > 160 and mouseX < 270:
@@ -110,9 +118,14 @@ def mousePressed():
     guessLetters()
 
 def guessLetters():
+    
+    f = createFont("ShadowsIntoLight-Regular.ttf",40)
+    textFont(f)
+    fill(0,0,0)
+    
     for x in range(len(guess)): #makes the letters appear on the line
         firstLetter = guess[x]
-        text(firstLetter,(x*120)+100,640)
+        text(firstLetter,(x*120)+80,640)
 
 def instructions():
     fill(255,255,255)
@@ -135,6 +148,8 @@ Good luck!!""",110,200)
 
 def dictionary():
     global setOfwords
+
+    
     setOfwords = [
     "dazzle",
     "jacket",
@@ -160,7 +175,7 @@ def overEasy(word):
     global scoreboard
 
     img = loadImage("overeasy.jpg") #logo
-    background(235,239,242)
+    background(240,244,247)
     image(img,0,-100,800,800)
 
     f = createFont("ShadowsIntoLight-Regular.ttf",40)
@@ -180,7 +195,7 @@ def overEasy(word):
     textFont(f)
     fill(0,0,0)
 
-    import random
+
     l = list(word) #shuffles letters
     random.shuffle(l)
     result = "".join(l)
@@ -189,13 +204,13 @@ def overEasy(word):
         firstLetter = result[x]
         text(firstLetter,(x*120)+80,740)
         
-#     fill(255,255,255)    
-#     rect(530,70,250,180)
-#     lilf = createFont("ShadowsIntoLight-Regular.ttf",20)
-#     textFont(lilf)
-#     fill(0,0,0)
-#     text("""          Hints:
-# - ENTER to go to next word
-# - press DELETE if you clicked 
-# the wrong letter""",540,90)
+    fill(255,255,255)    
+    rect(530,70,250,180)
+    lilf = createFont("ShadowsIntoLight-Regular.ttf",20)
+    textFont(lilf)
+    fill(0,0,0)
+    text("""         
+- ENTER to go to next word
+- press DELETE if you clicked 
+the wrong letter""",540,90)
     
