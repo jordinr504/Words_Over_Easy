@@ -8,7 +8,7 @@ def setup():
     global scoreboard
     global setOfwords
 
-    size(800,800)
+    size(1000,800)
 
     guess=[]
     gameActive = False
@@ -27,11 +27,11 @@ def draw():
         gameclock = (currentTime - startTimer)/1000
         fill(240,244,247)
         noStroke()
-        rect(740, 0,60,40)
+        rect(950, 0,60,40)
         f = createFont("ShadowsIntoLight-Regular.ttf",40)
         textFont(f)
         fill(0,0,0)
-        text(gameclock ,740,40)
+        text(gameclock ,950,40)
 
 
         if gameclock == 60:
@@ -39,10 +39,10 @@ def draw():
             bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
             textFont(bigFF)
             background(255,255,255)
-            text("NEXT LEVEl..",90,400)
+            text("NEXT LEVEl..",130,400)
             f = createFont("ShadowsIntoLight-Regular.ttf",30)
             textFont(f)
-            text("press g",350,450)
+            text("press g",450,450)
 
 
         stroke(0,0,0)
@@ -67,6 +67,7 @@ def keyPressed():
         startTimer = millis()
         dictionary()
         randomWord = random.choice(setOfwords)
+        randomWord = "dazzle"
         overEasy(randomWord)
         startGame = False
 
@@ -82,12 +83,13 @@ def keyPressed():
 
     if keyCode == 10: #RETURN key #makes it go to next word
 
-        randomWord = random.choice(setOfwords)
         together = "".join(guess) #makes list of letters become string
         if together in setOfwords: # to see if it was in a list
             scoreboard = scoreboard + 20
+            
         setOfwords.remove(randomWord)
         guess = []
+        randomWord = random.choice(setOfwords)
         overEasy(randomWord)
 
     if keyCode == 8 and len(guess) != 0: #deletes
@@ -107,20 +109,11 @@ def mousePressed():
 
     if gameActive == False:
         return
-
-    if mousePressed and mouseY > 680 and mouseX > 40 and mouseX < 150:
-        guess.append(result[0])
-    elif mousePressed and mouseY > 680 and mouseX > 160 and mouseX < 270:
-        guess.append(result[1])
-    elif mousePressed and mouseY > 680 and mouseX > 280 and mouseX < 390:
-        guess.append(result[2])
-    elif mousePressed and mouseY > 680 and mouseX > 400 and mouseX < 510:
-        guess.append(result[3])
-    elif mousePressed and mouseY > 680 and mouseX > 520 and mouseX < 630:
-        guess.append(result[4])
-    elif mousePressed and mouseY > 680 and mouseX > 640 and mouseX < 730:
-        guess.append(result[5])
-
+    
+    for e in range(len(randomWord)):
+        if mousePressed and mouseY > 680 and mouseX > (e*120)+40 and mouseX < (e*120)+150:
+            guess.append(result[e])
+            
     guessLetters()
 
 def guessLetters():
@@ -135,7 +128,7 @@ def guessLetters():
 
 def instructions():
     fill(255,255,255)
-    rect(100,150,600,600)
+    rect(200,150,600,600)
     f = createFont("ShadowsIntoLight-Regular.ttf",30)
     textFont(f)
     fill(0,0,0)
@@ -146,11 +139,11 @@ press 's'. You have to click the letters on the
 screen and then press ENTER on your keyboard to
 go to the next word. As time progresses, the words
 to guess will get harder.
-Good luck!!""",110,200)
+Good luck!!""",210,200)
 
     bigF = createFont("ShadowsIntoLight-Regular.ttf",70)
     textFont(bigF)
-    text("INSTRUCTIONS..",200,100)
+    text("INSTRUCTIONS..",270,100)
 
 def dictionary():
     global setOfwords
@@ -181,21 +174,24 @@ def overEasy(word):
     global x
     global scoreboard
 
+
+    numLetters = len(word)
+    
     img = loadImage("overeasy.jpg") #logo
-    background(240,244,247)
-    image(img,0,-100,800,800)
+    background(244,246,251)
+    image(img,0,-100,1000,800)
 
     f = createFont("ShadowsIntoLight-Regular.ttf",40)
     textFont(f)
     fill(0,0,0)
     text("Score:"+str(scoreboard),20,40)
-    text("Time:",640,40)
+    text("Time:",850,40)
 
-    fill(255,255,255)
-    for j in range(6):
+    fill(255,255,255)    #draws boxes and spaces
+    for j in range(numLetters):
         rect((j*120)+40,680,100,100)
 
-    for r in range(6):
+    for r in range(numLetters):
         line((r*120)+40,660,(r*120)+140,660)
 
     f = createFont("ShadowsIntoLight-Regular.ttf",40)
@@ -212,11 +208,11 @@ def overEasy(word):
         text(firstLetter,(x*120)+80,740)
 
     fill(255,255,255)
-    rect(530,70,250,180)
+    rect(700,70,250,180)
     lilf = createFont("ShadowsIntoLight-Regular.ttf",20)
     textFont(lilf)
     fill(0,0,0)
     text("""
 - ENTER to go to next word
 - press DELETE if you clicked
-the wrong letter""",540,90)
+the wrong letter""",710,80)
