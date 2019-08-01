@@ -9,10 +9,6 @@ def setup():
     global letters6
     global letters7
     global letters8
-    global x
-    global wordX
-    global wordY
-    global wordspeedX
     global level
 
     setOfwords = ()
@@ -72,10 +68,6 @@ def setup():
     level = 1
     
     stroke(0,0,0)
-    
-    wordX = 80
-    wordY = 640
-    wordspeedX = -2
 
     instructions()
 
@@ -83,10 +75,6 @@ def draw():
     global gameActive
     global gameclock
     global scoreboard
-    global x
-    global wordX
-    global wordY
-    global wordspeedX
     global level
 
     currentTime = millis()
@@ -100,7 +88,7 @@ def draw():
         fill(0,0,0)
         text(gameclock,935,40)
 
-        if gameclock == 30 and scoreboard >= 100 and level == 1: #to go to level 2
+        if gameclock == 35 and scoreboard >= 100 and level == 1: #to go to level 2
             gameActive = False
             level = 2
             bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
@@ -111,7 +99,7 @@ def draw():
             textFont(f)
             text("press g",400,450)
             return
-        elif level == 1 and gameclock == 30 and scoreboard < 100:
+        elif level == 1 and gameclock == 35 and scoreboard < 100:
             gameActive = False
             gameOver()
             return    
@@ -139,7 +127,7 @@ def draw():
             textFont(bigFFF)
             background(255,255,255)
             fill(0,0,0)
-            text("WINNER!!!",215,300)
+            text("WINNER!!!",225,350)
             return
         elif level == 3 and gameclock == 40 and scoreboard < 220:
             gameActive = False
@@ -160,6 +148,7 @@ def gameOver():
     f = createFont("ShadowsIntoLight-Regular.ttf",30)
     textFont(f)
     text("press r to restart",400,450)
+    level = 1
     
 
 def keyPressed():
@@ -174,10 +163,6 @@ def keyPressed():
     global letters6
     global letters7
     global letters8
-    global x
-    global wordX
-    global wordY
-    global wordspeedX
     
     if key == 's' and startGame == True: #starts game
         gameActive = True
