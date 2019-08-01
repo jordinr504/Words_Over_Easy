@@ -287,7 +287,7 @@ def overEasy(word):
     text("Time:",850,40)
     
     if level == 1:
-        text("LEVEL 1 - 100 pts - 40 seconds",250,40)
+        text("LEVEL 1 - 100 pts - 35 seconds",250,40)
     if level == 2:
         text("LEVEL 2 - 160 pts - 40 seconds",250,40)
     if level == 3:
