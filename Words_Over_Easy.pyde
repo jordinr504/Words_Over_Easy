@@ -1,5 +1,3 @@
-#hey
-
 import random
 
 def setup():
@@ -11,7 +9,11 @@ def setup():
     global letters6
     global letters7
     global letters8
-    # global highscore
+    global x
+    global wordX
+    global wordY
+    global wordspeedX
+    global level
 
     setOfwords = ()
     letters6= [
@@ -60,13 +62,6 @@ def setup():
     "workshop",
     "wireless",
     "triangle"]
-    
-    # highscore = {
-    # "KP",160,
-    # "Liv",220,
-    # "Sky",280,
-    # "Erica",200
-    # }
 
     size(1000,800)
 
@@ -74,7 +69,13 @@ def setup():
     gameActive = False
     startGame = True
     scoreboard = 0
-    # highscore = 0
+    level = 1
+    
+    stroke(0,0,0)
+    
+    wordX = 80
+    wordY = 640
+    wordspeedX = -2
 
     instructions()
 
@@ -82,7 +83,11 @@ def draw():
     global gameActive
     global gameclock
     global scoreboard
-    # global highscore
+    global x
+    global wordX
+    global wordY
+    global wordspeedX
+    global level
 
     currentTime = millis()
     if gameActive:
@@ -94,19 +99,10 @@ def draw():
         textFont(f)
         fill(0,0,0)
         text(gameclock,935,40)
-        
-        if gameclock == 40 and scoreboard < 220: #if you dont make the level requirements
+
+        if gameclock == 30 and scoreboard >= 100 and level == 1: #to go to level 2
             gameActive = False
-            bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
-            textFont(bigFF)
-            background(255,255,255)
-            text("GAME OVER..",150,400)
-            f = createFont("ShadowsIntoLight-Regular.ttf",30)
-            textFont(f)
-            text("press r to restart",400,450)
-            
-        if gameclock == 40 and scoreboard >= 100: #to go to level 2
-            gameActive = False
+            level = 2
             bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
             textFont(bigFF)
             background(255,255,255)
@@ -114,17 +110,15 @@ def draw():
             f = createFont("ShadowsIntoLight-Regular.ttf",30)
             textFont(f)
             text("press g",400,450)
-        if key == 'g':
-            fill(244,246,251)
-            noStroke()
-            rect(240,0,500,60)
-            f = createFont("ShadowsIntoLight-Regular.ttf",40)
-            textFont(f)
-            fill(0,0,0)
-            text("LEVEL 2 - 160 pts - 40 seconds",250,40)
-        
-        if gameclock == 40 and scoreboard >= 160: #to go to level 3
+            return
+        elif level == 1 and gameclock == 30 and scoreboard < 100:
             gameActive = False
+            gameOver()
+            return    
+        
+        if gameclock == 40 and scoreboard >= 160 and level == 2: #to go to level 3
+            gameActive = False
+            level = 3
             bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
             textFont(bigFF)
             background(255,255,255)
@@ -132,27 +126,41 @@ def draw():
             f = createFont("ShadowsIntoLight-Regular.ttf",30)
             textFont(f)
             text("press h",400,450)
-        if key == 'h':
-            fill(244,246,251)
-            noStroke()
-            rect(240,0,500,60)
-            f = createFont("ShadowsIntoLight-Regular.ttf",40)
-            textFont(f)
-            fill(0,0,0)
-            text("LEVEL 3 - 220 pts - 40 seconds",250,40)
-            
+            return
+        elif level == 2 and gameclock == 40 and scoreboard < 160:
+            gameActive = False
+            gameOver()
+            # print(level)
+            return
+        
         if gameclock == 40 and scoreboard >= 220: #winner screen
             gameActive = False
             bigFFF = createFont("ShadowsIntoLight-Regular.ttf",120)
             textFont(bigFFF)
             background(255,255,255)
             fill(0,0,0)
-            rect(200,150,600,600)
-            fill(255,255,255)
-            text("SCOREBOARD",215,300)
-            # text(highscore,215,350)
+            text("WINNER!!!",215,300)
+            return
+        elif level == 3 and gameclock == 40 and scoreboard < 220:
+            gameActive = False
+            gameOver()
+            return
                         
         stroke(0,0,0)
+        
+def gameOver():
+    global level
+
+    stroke(0,0,0)
+    gameActive = False
+    bigFF = createFont("ShadowsIntoLight-Regular.ttf",130)
+    textFont(bigFF)
+    background(255,255,255)
+    text("GAME OVER..",150,400)
+    f = createFont("ShadowsIntoLight-Regular.ttf",30)
+    textFont(f)
+    text("press r to restart",400,450)
+    
 
 def keyPressed():
     global setOfwords
@@ -166,8 +174,10 @@ def keyPressed():
     global letters6
     global letters7
     global letters8
-
-    import random
+    global x
+    global wordX
+    global wordY
+    global wordspeedX
     
     if key == 's' and startGame == True: #starts game
         gameActive = True
@@ -175,50 +185,37 @@ def keyPressed():
         setOfwords = letters6
         randomWord = random.choice(setOfwords)
         # randomWord = "dazzle"
-        overEasy(randomWord)
         startGame = False
+        overEasy(randomWord)
 
-    if key == 'g' and gameclock >= 40:
+    if key == 'g' and gameclock >= 30:
         gameActive = True
         startTimer = millis()
         setOfwords = letters7
         randomWord = random.choice(setOfwords)
-        overEasy(randomWord)
         startGame = True
         guess = []
-        # fill(244,246,251)
-        # noStroke()
-        # rect(240,0,500,60)
-        # f = createFont("ShadowsIntoLight-Regular.ttf",40)
-        # textFont(f)
-        # fill(0,0,0)
-        # text("LEVEL 2 - 160 pts - 40 seconds",250,40)
+        overEasy(randomWord)
         
-    if key == 'h' and gameclock >= 30:
+    if key == 'h' and gameclock >= 40:
         gameActive = True
         startTimer = millis()
         setOfwords = letters8
         randomWord = random.choice(setOfwords)
-        overEasy(randomWord)
         startGame = True
         guess = []
-        # fill(244,246,251)
-        # noStroke()
-        # rect(240,0,500,60)
-        # f = createFont("ShadowsIntoLight-Regular.ttf",40)
-        # textFont(f)
-        # fill(0,0,0)
-        # text("LEVEL 3 - 220 pts - 40 seconds",250,40)
-    
+        overEasy(randomWord)
+        
     if key == 'r':
         gameActive = True
         startTimer = millis()
         setOfwords = letters6
         randomWord = random.choice(setOfwords)
         scoreboard = 0
-        overEasy(randomWord)
         startGame = True
         guess = []
+        level = 1
+        overEasy(randomWord)
 
     if keyCode == 10: #RETURN key #makes it go to next word
 
@@ -230,15 +227,6 @@ def keyPressed():
         guess = []
         randomWord = random.choice(setOfwords)
         overEasy(randomWord)
-        
-        
-        # fill(244,246,251)
-        # noStroke()
-        # rect(240,0,500,60)
-        # f = createFont("ShadowsIntoLight-Regular.ttf",40)
-        # textFont(f)
-        # fill(0,0,0)
-        # text("LEVEL 2 - 160 pts - 40 seconds",250,40)
         
     if keyCode == 8 and len(guess) != 0: #deletes
         guess.pop()
@@ -272,6 +260,7 @@ def guessLetters():
         firstLetter = guess[x]
         text(firstLetter,(x*120)+80,640)
 
+
 def instructions():
     fill(255,255,255)
     rect(200,140,600,640)
@@ -298,6 +287,7 @@ def overEasy(word):
     global l
     global x
     global scoreboard
+    global level
 
     numLetters = len(word)
     
@@ -310,8 +300,16 @@ def overEasy(word):
     fill(0,0,0)
     text("Score:"+str(scoreboard),20,40)
     text("Time:",850,40)
-    text("LEVEL 1 - 100 pts - 40 seconds",250,40)
+    
+    if level == 1:
+        text("LEVEL 1 - 100 pts - 40 seconds",250,40)
+    if level == 2:
+        text("LEVEL 2 - 160 pts - 40 seconds",250,40)
+    if level == 3:
+        text("LEVEL 3 - 220 pts - 40 seconds",250,40)
 
+
+    stroke(0,0,0)
     fill(255,255,255)    #draws boxes and spaces
     for j in range(numLetters):
         rect((j*120)+40,680,100,100)
