@@ -272,17 +272,19 @@ def guessLetters():
 
 def instructions():
     fill(255,255,255)
-    rect(200,150,600,600)
+    rect(200,140,600,640)
     f = createFont("ShadowsIntoLight-Regular.ttf",30)
     textFont(f)
     fill(0,0,0)
     text("""The name of this game is Words Over Easy.
-The object of the game is to see how many of the
-preset words you can make in 60 seconds. To start,
-press 's'. You have to click the letters on the
+- The object of the game is to see how many of 
+the preset words you can make in 60 seconds. 
+- To start, press 's'. 
+- You have to click the letters on the
 screen and then press ENTER on your keyboard to
-go to the next word. As time progresses, the words
-to guess will get harder.
+go to the next word. 
+- As time progresses, the words to guess will
+get harder.
 Good luck!!""",210,200)
 
     bigF = createFont("ShadowsIntoLight-Regular.ttf",70)
